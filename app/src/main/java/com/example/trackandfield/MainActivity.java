@@ -15,4 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private void mub(){
 
     }
+    private void maxIsBad() {
+
+    }
 }
