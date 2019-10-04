@@ -1,12 +1,10 @@
 package com.example.trackandfield;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -29,12 +27,39 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void save(View v){
-        String text = mEditText.getText().toString();
+        String allEntries= "";
+        String newEntry = mEditText.getText().toString();
         FileOutputStream fos = null;
-
         try {
+            FileInputStream fis = null;
+            try {
+                fis = openFileInput(FILE_NAME);
+                InputStreamReader isr = new InputStreamReader(fis);
+                BufferedReader br = new BufferedReader(isr);
+                StringBuilder sb = new StringBuilder();
+                String oldEntries;
+
+                while((oldEntries = br.readLine()) != null){
+                    sb.append(oldEntries).append("\n");
+                }
+                // sb becomes all old entries, formatted
+                allEntries = sb.toString() + newEntry;
+                mEditText.setText(sb.toString());
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }finally {
+                if(fis!=null);
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
-            fos.write(text.getBytes());
+            fos.write(allEntries.getBytes());
 
             mEditText.getText().clear();
             Toast.makeText(this, "Saved to " + getFilesDir() + "/" + FILE_NAME, Toast.LENGTH_LONG).show();
@@ -52,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
     public void load(View v){
         FileInputStream fis = null;
 
