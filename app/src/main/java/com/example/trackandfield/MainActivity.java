@@ -1,6 +1,8 @@
 package com.example.trackandfield;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String FILE_NAME = "example.txt";
 
     EditText mEditText;
+    EditText mEditText2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +27,14 @@ public class MainActivity extends AppCompatActivity {
         //this is a comment
 
         mEditText = findViewById(R.id.edit_text);
+        mEditText2 = findViewById(R.id.edit_text2);
     }
+
 
     public void save(View v){
         String allEntries= "";
         String newEntry = mEditText.getText().toString();
+        String newEntryTime = mEditText.getText().toString();
         FileOutputStream fos = null;
         try {
             FileInputStream fis = null;
@@ -51,17 +57,19 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }finally {
-                if(fis!=null);
-                try {
-                    fis.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if(fis != null){
+                    try {
+                        fis.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
             fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
             fos.write(allEntries.getBytes());
 
             mEditText.getText().clear();
+            mEditText2.getText().clear();
             Toast.makeText(this, "Saved to " + getFilesDir() + "/" + FILE_NAME, Toast.LENGTH_LONG).show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -77,9 +85,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-    public void load(View v){
+    public String load(){
         FileInputStream fis = null;
-
+        String allEntries= "";
         try {
             fis = openFileInput(FILE_NAME);
             InputStreamReader isr = new InputStreamReader(fis);
@@ -90,23 +98,27 @@ public class MainActivity extends AppCompatActivity {
             while((text = br.readLine()) != null){
                 sb.append(text).append("\n");
             }
-
-            mEditText.setText(sb.toString());
+            allEntries= sb.toString();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
-            if(fis!=null);
-            try {
-                fis.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if(fis != null){
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
+        return allEntries;
     }
-    private void kangCantCode() {
-
+    private Intent intent;
+    public void switchActivity(View v) {
+        intent = new Intent(this, DataActivity.class);
+        intent.putExtra("scores",load());
+        startActivity(intent);
     }
 }
