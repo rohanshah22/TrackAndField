@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private static final String FILE_NAME = "example.txt";
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     public void save(View v){
         String allEntries= "";
         String newEntry = mEditText.getText().toString();
-        String newEntryTime = mEditText.getText().toString();
+        String newEntryTime = mEditText2.getText().toString();
         FileOutputStream fos = null;
         try {
             FileInputStream fis = null;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     sb.append(oldEntries).append("\n");
                 }
                 // sb becomes all old entries, formatted
-                allEntries = sb.toString() + newEntry;
+                allEntries = sb.toString()+ newEntry + ";" + newEntryTime;
                 mEditText.setText(sb.toString());
 
             } catch (FileNotFoundException e) {
@@ -85,9 +86,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-    public String load(){
+    public ArrayList<String> load(){
         FileInputStream fis = null;
         String allEntries= "";
+        ArrayList<String> allEntriesList = new ArrayList();
         try {
             fis = openFileInput(FILE_NAME);
             InputStreamReader isr = new InputStreamReader(fis);
@@ -96,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
             String text;
 
             while((text = br.readLine()) != null){
+                allEntriesList.add(br.readLine());
                 sb.append(text).append("\n");
             }
             allEntries= sb.toString();
@@ -113,7 +116,9 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        return allEntries;
+        mEditText.setText(allEntriesList.get(0));
+        return allEntriesList;
+
     }
     private Intent intent;
     public void switchActivity(View v) {

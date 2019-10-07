@@ -8,16 +8,12 @@ public class Player {
         playerScore = pScore;
     }
 
-    public void storeInfo(String p, double s){
-        playerName = p;
-        playerScore = s;
-    }
 
-    public double tellScore(){
+    public double getScore(){
         return playerScore;
     }
 
-    public String tellName(){
+    public String getName(){
         return playerName;
     }
 
