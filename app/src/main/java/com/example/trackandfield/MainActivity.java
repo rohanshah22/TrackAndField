@@ -116,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        mEditText.setText(allEntriesList.get(0));
         return allEntriesList;
 
     }
