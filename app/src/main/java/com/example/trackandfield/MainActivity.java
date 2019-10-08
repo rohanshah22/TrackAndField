@@ -37,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
         String newEntry = mEditText.getText().toString();
         String newEntryTime = mEditText2.getText().toString();
         FileOutputStream fos = null;
+        if(newEntry.equals("") || newEntry.equals(null)) {
+            return;
+        }
+        if(newEntryTime.equals("") || newEntryTime.equals(null)) {
+            return;
+        }
         try {
             FileInputStream fis = null;
             try {
@@ -98,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             String text;
 
             while((text = br.readLine()) != null){
-                allEntriesList.add(br.readLine());
+                allEntriesList.add(text);
                 sb.append(text).append("\n");
             }
             allEntries= sb.toString();
