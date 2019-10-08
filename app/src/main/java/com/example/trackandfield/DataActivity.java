@@ -23,12 +23,10 @@ public class DataActivity extends AppCompatActivity{
         //this is a comment
         viewText = (TextView)findViewById(R.id.textView3);
         fixString(getIntent().getStringArrayListExtra("scores"));
-        viewText.setText(getIntent().getStringArrayListExtra("scores").get(2));
     }
     // start of string is =, end of string is ;
     TextView viewText;
     private void fixString(ArrayList<String> scores) {
-        if(scores != null) {
             for (int i = 0; i < scores.size(); i++) {
                 String temp = scores.get(i);
                 if(temp != null) {
@@ -38,8 +36,11 @@ public class DataActivity extends AppCompatActivity{
                 }
             }
             sortPlayers();
-
+            String x = "";
+        for(int i = 0; i <holdPlayerData.size();i++) {
+            x += holdPlayerData.get(i).getName() + ""+holdPlayerData.get(i).getScore();
         }
+        viewText.setText(x);
     }
     ArrayList<Player> tempArray = new ArrayList<>();
     ArrayList<Player> holdPlayerData = new ArrayList<>();
