@@ -1,9 +1,15 @@
 package com.example.trackandfield;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.BufferedReader;
@@ -16,6 +22,8 @@ import java.io.StringReader;
 import java.util.ArrayList;
 
 public class DataActivity extends AppCompatActivity{
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +31,15 @@ public class DataActivity extends AppCompatActivity{
         //this is a comment
         viewText = (TextView)findViewById(R.id.textView3);
         fixString(getIntent().getStringArrayListExtra("scores"));
+
+        int arraySize = holdPlayerData.size();
+        for(int i = 0; i < arraySize; i++) {
+//                    System.out.println(athletes.get(i));
+            viewText.append((i+1)+ ". " + holdPlayerData.get(i).getName() + " - " + holdPlayerData.get(i).getScore());
+            viewText.append("\n");
+//            System.out.println("done" + i);
+//            System.out.println(arraySize);
+        }
     }
     // start of string is =, end of string is ;
     TextView viewText;
@@ -40,7 +57,6 @@ public class DataActivity extends AppCompatActivity{
         for(int i = 0; i <holdPlayerData.size();i++) {
             x += holdPlayerData.get(i).getName() + ""+holdPlayerData.get(i).getScore();
         }
-        viewText.setText(x);
     }
     ArrayList<Player> tempArray = new ArrayList<>();
     ArrayList<Player> holdPlayerData = new ArrayList<>();
