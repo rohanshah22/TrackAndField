@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         mEditText = findViewById(R.id.edit_text);
         mEditText2 = findViewById(R.id.edit_text2);
+
     }
 
 

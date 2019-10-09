@@ -10,23 +10,27 @@
         android:id="@+id/imageView"
         android:layout_width="822dp"
         android:layout_height="1421dp"
+        android:alpha=".7"
+        android:cropToPadding="false"
+        android:scaleType="fitStart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.401"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.376"
+        app:layout_constraintVertical_bias="0.389"
         app:srcCompat="@drawable/bg" />
 
     <EditText
         android:id="@+id/edit_text2"
-        android:layout_width="131dp"
-        android:layout_height="123dp"
-        android:layout_marginStart="234dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="46dp"
-        android:layout_marginBottom="488dp"
-        android:textColor="#FF0000"
-        android:textSize="36sp"
+        android:layout_width="314dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="257dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="393dp"
+        android:textColor="#000000"
+        android:textSize="26sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,14 +38,14 @@
 
     <EditText
         android:id="@+id/edit_text"
-        android:layout_width="131dp"
-        android:layout_height="123dp"
+        android:layout_width="323dp"
+        android:layout_height="80dp"
         android:layout_marginStart="55dp"
         android:layout_marginTop="120dp"
-        android:layout_marginEnd="225dp"
-        android:layout_marginBottom="488dp"
-        android:textColor="#FF0000"
-        android:textSize="36sp"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="531dp"
+        android:textColor="#000000"
+        android:textSize="26sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,16 +53,18 @@
 
     <Button
         android:id="@+id/button_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="203dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="416dp"
+        android:layout_marginEnd="153dp"
+        android:layout_marginBottom="268dp"
         android:onClick="save"
-        android:text="save"
+        android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.216"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_load"
@@ -95,10 +101,10 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="277dp"
-        android:layout_marginTop="86dp"
-        android:layout_marginEnd="78dp"
-        android:layout_marginBottom="611dp"
+        android:layout_marginStart="91dp"
+        android:layout_marginTop="223dp"
+        android:layout_marginEnd="264dp"
+        android:layout_marginBottom="474dp"
         android:text="Time"
         android:textColor="#FF0000"
         android:textSize="25sp"
@@ -106,7 +112,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
