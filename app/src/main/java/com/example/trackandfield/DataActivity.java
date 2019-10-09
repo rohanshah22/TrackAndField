@@ -44,12 +44,16 @@ public class DataActivity extends AppCompatActivity {
     String[] listItem;
     ListView listView;
     TextView textView;
-    // start of string is =, end of string is ;
+
+    //creates the listview
     private void setListView() {
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, listItem);
         listView.setAdapter(adapter);
     }
+
+    // takes information from formatted string, uses substring to isolate data
+    // isolates data and adds to class
     private void fixString(ArrayList<String> scores) {
         for (int i = 0; i < scores.size(); i++) {
             String temp = scores.get(i);
@@ -65,6 +69,8 @@ public class DataActivity extends AppCompatActivity {
             x += holdPlayerData.get(i).getName() + "" + holdPlayerData.get(i).getScore();
         }
     }
+    // creates a traditional array the size of the arraylist
+    // iterates through and adds data in the form of a string
     private void convertArrayList() {
         listItem = new String[holdPlayerData.size()];
         for(int i = 0; i < holdPlayerData.size();i++) {
@@ -91,6 +97,7 @@ public class DataActivity extends AppCompatActivity {
         }
 
     }
+    //saves a blank string as the whole file
     private static final String FILE_NAME = "example.txt";
     public void resetFile(View v) {
         String text = "";
@@ -121,28 +128,4 @@ public class DataActivity extends AppCompatActivity {
             intent = new Intent(this, MainActivity.class);
             startActivity(intent);
     }
-//    TextView placementView;
-//    TextView nameView;
-//    TextView timeView;
-//    public void init(){
-//        TableLayout ll = (TableLayout) findViewById(R.id.displayLinear);
-//        for (int i = 0; i <holdPlayerData.size(); i++) {
-//            TableRow row= new TableRow(this);
-//            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-//            row.setLayoutParams(lp);
-//            placementView = new TextView(this);
-//            nameView = new TextView(this);
-//            timeView = new TextView(this);
-//            placementView.setText(i+1 + ". ");
-//            placementView.setTextSize(40);
-//            nameView.setText(holdPlayerData.get(i).getName());
-//            nameView.setTextSize(40);
-//            timeView.setText("    " +holdPlayerData.get(i).getScore());
-//            timeView.setTextSize(40);
-//            row.addView(placementView);
-//            row.addView(nameView);
-//            row.addView(timeView);
-//            ll.addView(row,i);
-//        }
-//}
 }
